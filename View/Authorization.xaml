@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GoldFish.View"
         mc:Ignorable="d"
-        Title="Authorization" Height="450" Width="800">
+        Title="Authorization" Height="450" Width="800"
+        MinHeight="450" MinWidth="800">
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
             <Setter Property="FontFamily" Value="Ebrima" />
@@ -22,30 +23,114 @@
             <RowDefinition Height="60*"/>
             <RowDefinition Height="110*"/>
             <RowDefinition Height="35*"/>
-            <RowDefinition Height="125*"/>
+            <RowDefinition Height="80*"/>
+            <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
             <ColumnDefinition Width="170*" />
-            <ColumnDefinition Width="160*"/>
-            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="53*"/>
         </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.ColumnSpan="4"
+              Background="#FF9DE697" Margin="0,0,0,61" Grid.RowSpan="2"/>
+        <Grid Grid.Row="5" Grid.ColumnSpan="4"
+              Background="#FF9DE697" Margin="0,82,0,0" Grid.RowSpan="2"/>
         <Button Grid.Column="3" 
                 Content="Выход" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
-                Padding="15 5 15 5"
+                HorizontalAlignment="Stretch" 
+                VerticalAlignment="Stretch" 
+                Margin="5 5 5 5"
+                Background="#FF2BE36F"   
+                FontSize="15"
+
                 />
         <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
                Content="Авторизация"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" 
                FontSize="16"
-               FontWeight="Bold"
+               FontWeight="Bold" Margin="0,0,0,61" Grid.RowSpan="2"
                />
         <Image Grid.Column="0" Grid.Row="0"
-               Source="/Resources/logo.png"
+               Source="/Resources/logo.png" Margin="0,0,0,61" Grid.RowSpan="2"
                />
+        <Label Grid.Column="1" Grid.Row="1"
+               Content="Логин"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Right"
+               Padding="0 30 30 0"
+            />
+        <Label Grid.Column="1" Grid.Row="1"
+               Content="Пароль"
+               VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Right"
+               Padding="0 30 30 0" Margin="0,61,0,0" Grid.RowSpan="2"
+            />
+        <TextBox Grid.Column="2" Grid.Row="1"
+                 x:Name="textBoxLogin"
+                 VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Left"
+               Margin="30 30 50 0"
+               Text="text"
+                 BorderBrush="#FF2BE36F"
+            />
+        <TextBox Grid.Column="2" Grid.Row="2"
+                 x:Name="textBoxPassword"
+                 VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Left"
+               Margin="30 30 50 0"
+               Text="text"
+                 BorderBrush="#FF2BE36F"
+            />
+        <Image Grid.Column="1" Grid.Row="3"
+               x:Name="imageCaptcha"
+               Source="/Resources/picture.png"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Left"
+               Margin="207,0,0,0" Height="93" Width="123"
+               />
+        <TextBox Grid.Column="2" Grid.Row="3"
+                 x:Name="textBoxCaptcha"
+                 VerticalContentAlignment="Center"
+               HorizontalContentAlignment="Left"
+               Margin="30 50 50 30"
+               Text="text"
+                 BorderBrush="#FF2BE36F"
+            />
 
+        <Button Grid.Column="1" Grid.Row="4"
+                x:Name="buttonOtherPicture"
+                Content="Другое изображение" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Padding="15 5 15 5"
+                Background="#FF2BE36F" 
+                Margin="181,0,0,0" Height="29" Width="149"
+                
+                />
+        <Button Grid.Column="1" Grid.Row="5"
+                x:Name="buttonGuest"
+                Content="Гость" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                Padding="15 5 15 5"
+                Background="#FF2BE36F"
+                Margin="90,0,0,0" 
+                Height="42" 
+                Width="240"
+                FontSize="15"
+                />
+        <Button Grid.Column="2" Grid.Row="5"
+                x:Name="buttonAuthorize"
+                Content="Авторизоваться" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Padding="15 5 15 5"
+                Background="#FF2BE36F" 
+                Height="42" 
+                Width="240"
+                FontSize="15"
+                />
     </Grid>
 </Window>
