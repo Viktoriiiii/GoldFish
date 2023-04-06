@@ -37,12 +37,13 @@
         <Grid Grid.Row="5" Grid.ColumnSpan="4"
               Background="#FF9DE697" Margin="0,82,0,0" Grid.RowSpan="2"/>
         <Button Grid.Column="3" 
+                x:Name="buttonClose"
                 Content="Выход" 
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Stretch" 
                 Margin="5 5 5 5"
                 Background="#FF2BE36F"   
-                FontSize="15"
+                FontSize="15" Click="buttonClose_Click"
 
                 />
         <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
@@ -119,7 +120,7 @@
                 Margin="90,0,0,0" 
                 Height="42" 
                 Width="240"
-                FontSize="15"
+                FontSize="15" Click="buttonGuest_Click"
                 />
         <Button Grid.Column="2" Grid.Row="5"
                 x:Name="buttonAuthorize"
@@ -130,7 +131,7 @@
                 Background="#FF2BE36F" 
                 Height="42" 
                 Width="240"
-                FontSize="15"
+                FontSize="15" Click="buttonAuthorize_Click"
                 />
     </Grid>
 </Window>

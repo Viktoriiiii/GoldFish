@@ -16,30 +16,18 @@ using System.Windows.Shapes;
 namespace GoldFish.View
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для Catalog.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class Catalog : Window
     {
-        public Authorization()
+        public Catalog()
         {
             InitializeComponent();
         }
 
-        private void buttonGuest_Click(object sender, RoutedEventArgs e)
+        private void btnClickBack(object sender, RoutedEventArgs e)
         {
-            Catalog window = new Catalog();
-            window.Show();
-            this.Close();
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void buttonAuthorize_Click(object sender, RoutedEventArgs e)
-        {
-            Catalog window = new Catalog();
+            Authorization window = new Authorization();
             window.Show();
             this.Close();
         }

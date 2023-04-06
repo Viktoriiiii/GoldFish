@@ -10,34 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace GoldFish.View
 {
     /// <summary>
-    /// Логика взаимодействия для Authorization.xaml
+    /// Логика взаимодействия для Order.xaml
     /// </summary>
-    public partial class Authorization : Window
+    public partial class Order : Window
     {
-        public Authorization()
+        public Order()
         {
             InitializeComponent();
         }
 
-        private void buttonGuest_Click(object sender, RoutedEventArgs e)
-        {
-            Catalog window = new Catalog();
-            window.Show();
-            this.Close();
-        }
-
-        private void buttonClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void buttonAuthorize_Click(object sender, RoutedEventArgs e)
+        private void buttonOnCatalog_Click(object sender, RoutedEventArgs e)
         {
             Catalog window = new Catalog();
             window.Show();
