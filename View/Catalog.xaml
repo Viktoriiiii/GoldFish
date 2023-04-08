@@ -21,43 +21,96 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="110*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="240*"/>
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="170*" />
-            <ColumnDefinition Width="147*"/>
-            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="80*" />
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="50*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,0,0,61" Grid.RowSpan="2"/>
-        <Grid Grid.Row="5" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,82,0,0" Grid.RowSpan="2"/>
-        <Button Grid.Column="3" 
+        <Grid Grid.Row="0" Grid.ColumnSpan="6"
+              Background="#FFF" />
+        <Grid Grid.Row="4" Grid.ColumnSpan="6"
+              Background="#FFF" Margin="0,239,0,0" Grid.RowSpan="2" />
+        <Button Grid.Column="5" 
                 x:Name="buttonBack"
                 Content="Назад" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
-                Margin="5 5 5 5"
-                Background="#FF2BE36F"   
+                Margin="5,5,5,5"
+                Background="#FFF"   
                 FontSize="15" Click="btnClickBack"
 
                 />
-        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"
                Content="Каталог"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" 
                FontSize="16"
-               FontWeight="Bold" Margin="0,0,0,61" Grid.RowSpan="2"
+               FontWeight="Bold"
                />
         <Image Grid.Column="0" Grid.Row="0"
-               Source="/Resources/logo.png" Margin="0,0,0,61" Grid.RowSpan="2"
+               Source="/Resources/logo.png"
                />
-        
+        <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+               Content="Количество заисей 30 из 30"
+               x:Name="labelCount"
+            />
+        <Label Grid.Row="2" Grid.Column="1"
+               Content="Название"
+            />
+        <Label Grid.Row="3" Grid.Column="1"
+               Content="Категория"
+            />
+        <Label Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2"
+               Content="Гость"
+               x:Name="labelGuest"/>
+        <Label Grid.Row="2" Grid.Column="3"
+               Content="Скидка"
+            />
+        <Label Grid.Row="3" Grid.Column="3"
+               Content="Сортировка"
+            />
+        <TextBox Grid.Row="2" Grid.Column="2"
+                 x:Name="textBoxNameProduct"
+            />
+        <ComboBox Grid.Row="3" Grid.Column="2"
+                 x:Name="comboBoxCategoryProduct"
+            />
+        <ComboBox Grid.Row="2" Grid.Column="4"
+                 x:Name="comboBoxDiscountProduct"
+            />
+        <ComboBox Grid.Row="3" Grid.Column="4"
+                 x:Name="comboBoxSortProduct"
+            />
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="6"
+                  x:Name="dataGridProducts"
+            />
+        <Button Grid.Row="6" Grid.Column="1"
+                Content="Добавить товар"
+                x:Name="buttonAddProduct"
+                Margin="5,5,5,5"
+            />
+        <Button Grid.Row="6" Grid.Column="2"
+                Content="История входов"
+                x:Name="buttonHystory"
+                Margin="5,5,5,5"
+            />
+        <Button Grid.Row="6" Grid.Column="3"
+                Content="Мой заказ"
+                x:Name="buttonOrder"
+                Margin="5,5,5,5"
+            />
+        <Button Grid.Row="6" Grid.Column="4"
+                Content="Работа с заказами"
+                x:Name="buttonUpdateOrders"
+                Margin="5,5,5,5"
+            />
+
     </Grid>
 </Window>
