@@ -13,8 +13,6 @@ namespace GoldFish.View
     /// </summary>
     public partial class Catalog : Window
     {
-        List<OrderProduct> listProduct;
-
         public Catalog()
         {
             InitializeComponent();
@@ -78,7 +76,31 @@ namespace GoldFish.View
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-           
+            Product product = (Product)dataGridProducts.Items.GetItemAt(dataGridProducts.SelectedIndex);
+
+            var orderProduct = new OrderProduct
+            {
+                OrderProductCount = 1,
+                ProductArticleNumber = product.ProductArticleNumber
+            };
+
+            if (Helper.ListOrderProduct == null || Helper.ListOrderProduct.Count == 0)
+            {
+                Helper.ListOrderProduct = new List<OrderProduct>
+                {
+                    orderProduct,
+                };
+            }
+            else
+            {
+                if (!Helper.ListOrderProduct.Exists(x => x.ProductArticleNumber == product.ProductArticleNumber))
+                    Helper.ListOrderProduct.Add(orderProduct);
+                else
+                {
+                    int ind = Helper.ListOrderProduct.FindIndex(x => x.ProductArticleNumber == product.ProductArticleNumber);
+                    Helper.ListOrderProduct[ind].OrderProductCount++;
+                }
+            }
         }
 
         private void FilterOn()
