@@ -97,11 +97,11 @@
     <Compile Include="View\Hystory.xaml.cs">
       <DependentUpon>Hystory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Order.xaml.cs">
-      <DependentUpon>Order.xaml</DependentUpon>
+    <Compile Include="View\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Product.xaml.cs">
-      <DependentUpon>Product.xaml</DependentUpon>
+    <Compile Include="View\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UpdateOrders.xaml.cs">
       <DependentUpon>UpdateOrders.xaml</DependentUpon>
@@ -148,11 +148,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Order.xaml">
+    <Page Include="View\Orders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Product.xaml">
+    <Page Include="View\Products.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

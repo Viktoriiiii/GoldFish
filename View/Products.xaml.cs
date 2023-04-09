@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoldFish.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,20 +16,33 @@ using System.Windows.Shapes;
 namespace GoldFish.View
 {
     /// <summary>
-    /// Логика взаимодействия для Product.xaml
+    /// Логика взаимодействия для Products.xaml
     /// </summary>
-    public partial class Product : Window
+    public partial class Products : Window
     {
-        public Product()
+        public Products()
         {
             InitializeComponent();
         }
 
         private void buttonOnCatalog_Click(object sender, RoutedEventArgs e)
         {
+            Helper.Product = null;
             Catalog window = new Catalog();
             window.Show();
             this.Close();
+        }
+
+        private void Products_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Helper.Product == null)
+            {
+                labelTitle.Content = "Новый товар";
+            }
+            else
+            {
+                labelTitle.Content = "Редактирование товара";
+            }
         }
     }
 }

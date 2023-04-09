@@ -37,6 +37,14 @@ namespace GoldFish.Models
                 .Property(e => e.ProductCost)
                 .HasPrecision(19, 2);
 
+            modelBuilder.Entity<Product>()
+                .Property(e => e.ProductDiscountInMoney)
+                .HasPrecision(19, 2);
+
+            modelBuilder.Entity<Product>()
+                .Property(e => e.ProductWithDiscount)
+                .HasPrecision(19, 2);
+
             modelBuilder.Entity<User>()
                 .HasOptional(e => e.Client)
                 .WithRequired(e => e.User);

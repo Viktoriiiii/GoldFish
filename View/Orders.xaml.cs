@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace GoldFish.View
 {
     /// <summary>
-    /// Логика взаимодействия для Order.xaml
+    /// Логика взаимодействия для Orders.xaml
     /// </summary>
-    public partial class Order : Window
+    public partial class Orders : Window
     {
-        public Order()
+        public Orders()
         {
             InitializeComponent();
         }

@@ -23,7 +23,8 @@ namespace GoldFish.View
         private void buttonGuest_Click(object sender, RoutedEventArgs e)
         {
             Catalog window = new Catalog();
-            window.Show();
+            this.Hide();
+            window.ShowDialog();
             this.Close();
         }
 
@@ -46,7 +47,8 @@ namespace GoldFish.View
                 MessageBox.Show("Авторизация пройдена");
                 MessageBox.Show($"Вы зашли под ролью {Helper.User.Role.RoleName}");
                 Catalog window = new Catalog();
-                window.Show();
+                this.Hide();
+                window.ShowDialog();
                 this.Close();
 
             }

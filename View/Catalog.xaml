@@ -7,7 +7,8 @@
       mc:Ignorable="d" 
       Height="450" Width="800"
       MinHeight="450" MinWidth="800"
-      Title="Каталог">
+      x:Name="windowCatalog"
+      Title="Каталог" Loaded="windowCatalog_Loaded">
 
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
@@ -58,7 +59,7 @@
                Source="/Resources/logo.png"
                />
         <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
-               Content="Количество заисей 30 из 30"
+               Content="Количество записей 30 из 30"
                x:Name="labelCount"
             />
         <Label Grid.Row="2" Grid.Column="1"
@@ -77,40 +78,125 @@
                Content="Сортировка"
             />
         <TextBox Grid.Row="2" Grid.Column="2"
-                 x:Name="textBoxNameProduct"
+                 x:Name="textBoxNameProduct" TextChanged="textBoxNameProduct_TextChanged"
             />
         <ComboBox Grid.Row="3" Grid.Column="2"
-                 x:Name="comboBoxCategoryProduct"
-            />
+                 x:Name="comboBoxCategoryProduct" SelectionChanged="comboBoxCategoryProduct_SelectionChanged"                 
+                  />
         <ComboBox Grid.Row="2" Grid.Column="4"
                  x:Name="comboBoxDiscountProduct"
-            />
+                  SelectedIndex="0" SelectionChanged="comboBoxDiscountProduct_SelectionChanged">
+                  <TextBlock>Все диапазоны</TextBlock>
+                  <TextBlock>0 - 10.99%</TextBlock>
+                  <TextBlock>11 - 14.99%</TextBlock>
+                  <TextBlock> > 15%</TextBlock>
+        </ComboBox>
         <ComboBox Grid.Row="3" Grid.Column="4"
                  x:Name="comboBoxSortProduct"
-            />
+                  SelectedIndex="0" 
+                  SelectionChanged="comboBoxSortProduct_SelectionChanged">
+            <TextBlock>По убыванию</TextBlock>
+            <TextBlock>По возрастанию</TextBlock>
+        </ComboBox>
         <DataGrid Grid.Row="4" Grid.ColumnSpan="6"
                   x:Name="dataGridProducts"
-            />
+                  MouseDoubleClick="dataGridProducts_MouseDoubleClick"
+                  AutoGenerateColumns="False" 
+                      CanUserAddRows="False" >
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem
+                        Header="Добавить к заказу"
+                        Click="MenuItem_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Фото">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding ProductPhoto}"
+                                   Width="60"
+                                   Height="60"
+                                   Margin="0,5,5,0"
+                                   ></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Артикул">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ProductArticleNumber}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Описание">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock>
+                                    <Run Text="Наименование товара: "/>
+                                    <Run Text="{Binding ProductName}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Описание товара: "/>
+                                    <Run Text="{Binding ProductDescription}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Цена: "/>
+                                    <Run Text="{Binding ProductCost}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Скидка: "/>
+                                    <Run Text="{Binding ProductDiscountAmount}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Цена со скидкой: "/>
+                                    <Run Text="{Binding ProductWithDiscount}"/>
+                                </TextBlock>
+                                <TextBlock>
+                                    <Run Text="Производитель: "/>
+                                    <Run Text="{Binding Manufacturer.ManufacturerName}"/>
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Скидка">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ProductDiscountInMoney}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button Grid.Row="6" Grid.Column="1"
                 Content="Добавить товар"
                 x:Name="buttonAddProduct"
-                Margin="5,5,5,5"
+                Margin="5,5,5,5" Click="buttonAddProduct_Click"
             />
         <Button Grid.Row="6" Grid.Column="2"
                 Content="История входов"
                 x:Name="buttonHystory"
-                Margin="5,5,5,5"
+                Margin="5,5,5,5" Click="buttonHystory_Click"
             />
         <Button Grid.Row="6" Grid.Column="3"
                 Content="Мой заказ"
                 x:Name="buttonOrder"
-                Margin="5,5,5,5"
+                Margin="5,5,5,5" Click="buttonOrder_Click"
             />
         <Button Grid.Row="6" Grid.Column="4"
                 Content="Работа с заказами"
                 x:Name="buttonUpdateOrders"
-                Margin="5,5,5,5"
+                Margin="5,5,5,5" Click="buttonUpdateOrders_Click"
             />
+        <Button Grid.Row="2" Grid.Column="5" Grid.RowSpan="2"
+                x:Name="resetSort"
+                Margin="10" Click="resetSort_Click">
+                <TextBlock TextAlignment="Center">Сброс
+            <LineBreak/> сортировки
+            </TextBlock>
+        </Button>
 
     </Grid>
 </Window>

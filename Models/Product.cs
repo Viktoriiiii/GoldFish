@@ -41,6 +41,12 @@ namespace GoldFish.Models
 
         public int ProductMaxDiscountAmount { get; set; }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal? ProductDiscountInMoney { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal? ProductWithDiscount { get; set; }
+
         public virtual Category Category { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
