@@ -8,7 +8,7 @@
         Loaded="Products_Loaded"
         Title="Товар" 
         Height="450" Width="800"
-        MinHeight="450" MinWidth="800">
+        MinHeight="450" MinWidth="800" Icon="/Resources/icon.ico">
 
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
@@ -32,21 +32,22 @@
             <RowDefinition Height="40*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="80*" />
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="33*" />
+            <ColumnDefinition Width="127*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="160*"/>
+            <ColumnDefinition Width="100*"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="5" 
+        <Button Grid.Column="6" 
                 x:Name="buttonOnCatalog"
                 Content="В каталог" 
                 Margin="5,5,5,5"
                 Background="#FFF"   
                 FontSize="15" Click="buttonOnCatalog_Click"
                 />
-        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="5"
                x:Name="labelTitle"
                Content="Товар"
                HorizontalContentAlignment="Center"
@@ -57,89 +58,106 @@
         <Image Grid.Column="0" Grid.Row="0"
                Source="/Resources/logo.png"
                />
-        <Label Grid.Column="1" Grid.Row="1"
-               Content="Артикул"
+        <Label Grid.Column="1"
+               Content="Артикул" Grid.ColumnSpan="2" Margin="0,40,0,40" Grid.RowSpan="3"
             />
         <Label Grid.Column="1" Grid.Row="2"
-               Content="Наименование"
+               Content="Наименование" Grid.ColumnSpan="2"
             />
-        <Label Grid.Column="1" Grid.Row="3"
-               Content="Категория"
+        <Label Grid.Column="1" Grid.Row="2"
+               Content="Категория" Grid.ColumnSpan="2" Margin="0,40,0,40" Grid.RowSpan="3"
             />
         <Label Grid.Column="1" Grid.Row="4"
-               Content="Производитель"
+               Content="Производитель" Grid.ColumnSpan="2" Margin="0,0,0,40" Grid.RowSpan="2"
             />
         <Label Grid.Column="1" Grid.Row="5"
-               Content="Изображение"
+               Content="Изображение" Grid.ColumnSpan="2"
             />
-        <Label Grid.Column="3" Grid.Row="1"
-               Content="Стоимость"
+        <Label Grid.Column="4"
+               Content="Стоимость" Margin="0,40,0,40" Grid.RowSpan="3"
             />
-        <Label Grid.Column="3" Grid.Row="2"
+        <Label Grid.Column="4" Grid.Row="2"
                Content="Скидка (%)"
             />
-        <Label Grid.Column="3" Grid.Row="3"
-               Content="Максимальная скидка (%)"
+        <Label Grid.Column="4" Grid.Row="2"
+               Content="Максимальная скидка (%)" Margin="0,40,0,40" Grid.RowSpan="3"
             />
-        <Label Grid.Column="3" Grid.Row="4"
-               Content="На складе"
+        <Label Grid.Column="4" Grid.Row="4"
+               Content="На складе" Margin="0,0,0,40" Grid.RowSpan="2"
             />
-        <Label Grid.Column="3" Grid.Row="5"
+        <Label Grid.Column="4" Grid.Row="5"
                Content="Описание"
             />
         <Image Grid.Column="1" Grid.Row="6" Grid.RowSpan="2"
                x:Name="imageProductPhoto"
-               Margin="10"
+               Margin="10,10,10,10"
                Height="Auto"
-               Width="Auto"
-               Source="/Resources/logo.png"
-            />
-        <TextBox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="2" Grid.RowSpan="2"
+               Width="Auto" Grid.ColumnSpan="2"
+               >
+            <Image.Source>
+                <Binding Path="ProductPhoto">
+                    <Binding.TargetNullValue>
+                        <ImageSource>/Resources/logo.png</ImageSource>
+                    </Binding.TargetNullValue>
+                </Binding>
+            </Image.Source>
+        </Image>
+        <TextBox Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="2" Grid.RowSpan="2"
                  x:Name="textBoxDescription"
-                 Margin="10"
+                 Margin="10,10,10,10"
                  ScrollViewer.CanContentScroll="True" 
                 VerticalScrollBarVisibility="Auto" 
                 HorizontalScrollBarVisibility="Auto"
             />
         <Button Grid.Column="1" Grid.Row="8"
-                Margin="5"
+                Margin="5,5,5,5"
                 x:Name="buttonDeleteProduct"
-                Content="Удалить товар"
+                Content="Удалить товар" Grid.ColumnSpan="2"
             />
-        <Button Grid.Column="4" Grid.Row="8"
-                Margin="5"
+        <Button Grid.Column="5" Grid.Row="8"
+                Margin="5,5,5,5"
                 x:Name="buttonSaveChanges"
                 Content="Сохранить изменения"
             />
-        <TextBox Grid.Column="2" Grid.Row="1"
-                x:Name="textBoxArticle"               
+        <TextBox Grid.Column="3"
+                x:Name="textBoxArticle" Margin="0,40,0,40" Grid.RowSpan="3"               
             />
-        <TextBox Grid.Column="2" Grid.Row="2"
+        <TextBox Grid.Column="3" Grid.Row="2"
                 x:Name="textBoxProductName"               
             />
-        <TextBox Grid.Column="4" Grid.Row="1"
-                x:Name="textBoxCost"               
+        <TextBox Grid.Column="5"
+                x:Name="textBoxCost" Margin="0,40,0,40" Grid.RowSpan="3"               
             />
-        <TextBox Grid.Column="4" Grid.Row="2"
+        <TextBox Grid.Column="5" Grid.Row="2"
                 x:Name="textBoxDiscount"               
             />
-        <TextBox Grid.Column="4" Grid.Row="3"
-                x:Name="textBoxMaxDicsount"               
+        <TextBox Grid.Column="5" Grid.Row="2"
+                x:Name="textBoxMaxDicsount" Margin="0,40,0,40" Grid.RowSpan="3"               
             />
-        <TextBox Grid.Column="4" Grid.Row="4"
-                x:Name="textBoxOnStore"               
+        <TextBox Grid.Column="5" Grid.Row="4"
+                x:Name="textBoxOnStore" Margin="0,0,0,40" Grid.RowSpan="2"               
             />
-        <ComboBox Grid.Column="2" Grid.Row="3"
+        <ComboBox Grid.Column="3" Grid.Row="2"
                   x:Name="comboBoxCategory"
-                  DisplayMemberPath="CategoryName"
+                  DisplayMemberPath="CategoryName" Margin="0,40,0,40" Grid.RowSpan="3"
             />
-        <ComboBox Grid.Column="2" Grid.Row="4"
+        <ComboBox Grid.Column="3" Grid.Row="4"
                   x:Name="comboBoxManufacturer"
-                  DisplayMemberPath="ManufacturerName"
+                  DisplayMemberPath="ManufacturerName" Margin="0,0,0,40" Grid.RowSpan="2"
             />
-        <ComboBox Grid.Column="5" Grid.Row="4"
+        <ComboBox Grid.Column="6" Grid.Row="4"
                   x:Name="comboBoxUnit"
-                  DisplayMemberPath="UnitName"
+                  DisplayMemberPath="UnitName" Margin="0,0,0,40" Grid.RowSpan="2"
+            />
+        <Button Grid.Column="3" Grid.Row="6"
+                Content="Изменить"
+                Margin="10,10,10,10"
+                x:Name="buttonChangeImage"
+            />
+        <Button Grid.Column="3" Grid.Row="7"
+                Content="Удалить"
+                Margin="10,35,10,35"
+                x:Name="butonDeleteImage"
             />
     </Grid>
 </Window>

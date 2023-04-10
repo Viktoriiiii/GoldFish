@@ -8,7 +8,7 @@
       Height="450" Width="800"
       MinHeight="450" MinWidth="800"
       x:Name="windowCatalog"
-      Title="Каталог" Loaded="windowCatalog_Loaded">
+      Title="Каталог" Loaded="windowCatalog_Loaded" Icon="/Resources/icon.ico">
 
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
@@ -114,11 +114,17 @@
                 <DataGridTemplateColumn Header="Фото">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding ProductPhoto}"
-                                   Width="60"
+                            <Image Width="60"
                                    Height="60"
-                                   Margin="0,5,5,0"
-                                   ></Image>
+                                   Margin="0,5,5,0">
+                                <Image.Source>
+                                    <Binding Path="ProductPhoto">
+                                        <Binding.TargetNullValue>
+                                            <ImageSource>/Resources/logo.png</ImageSource>
+                                        </Binding.TargetNullValue>
+                                    </Binding>
+                                </Image.Source>                                
+                            </Image>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
