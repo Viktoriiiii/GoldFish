@@ -6,7 +6,9 @@
         xmlns:local="clr-namespace:GoldFish.View"
         mc:Ignorable="d"
         Title="Заказ" Height="450" Width="800"
-        MinHeight="450" MinWidth="800" Icon="/Resources/icon.ico">
+        MinHeight="450" MinWidth="800" 
+        Loaded="windowOrders_Loaded"
+        Icon="/Resources/icon.ico">
 
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
@@ -19,44 +21,137 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50*"/>
             <RowDefinition Height="40*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="110*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="80*"/>
             <RowDefinition Height="40*"/>
+            <RowDefinition Height="185*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="50*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="170*" />
+            <ColumnDefinition Width="60*"/>
+            <ColumnDefinition Width="156*" />
+            <ColumnDefinition Width="332*"/>
             <ColumnDefinition Width="147*"/>
-            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="106*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,0,0,61" Grid.RowSpan="2"/>
-        <Grid Grid.Row="5" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,82,0,0" Grid.RowSpan="2"/>
-        <Button Grid.Column="3" 
+        <Button Grid.Column="4" 
                 x:Name="buttonOnCatalog"
                 Content="В каталог" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
-                Margin="5 5 5 5"
-                Background="#FF2BE36F"   
+                Margin="5,5,5,5"
+                Background="#FFF"   
                 FontSize="15" Click="buttonOnCatalog_Click"
 
                 />
-        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
-               Content="Заказ"
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="3"
+               Content="Информация о заказе"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" 
                FontSize="16"
-               FontWeight="Bold" Margin="0,0,0,61" Grid.RowSpan="2"
+               FontWeight="Bold" Margin="0,0,0,4"
                />
         <Image Grid.Column="0" Grid.Row="0"
-               Source="/Resources/logo.png" Margin="0,0,0,61" Grid.RowSpan="2"
+               Source="/Resources/logo.png" Margin="0,0,0,4"
                />
-
+        <Label Grid.Column="3" Grid.Row="1"
+               Content="Гость"
+               x:Name="labelNameClient"
+            />
+        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
+               Content="Состав заказа"
+            />
+        <Label Grid.Column="2" Grid.Row="2"
+               Content="Описание заказа"
+            />
+        <Label Grid.Column="3" Grid.Row="2"
+               Content="Описание товара"
+            />
+        <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  x:Name="dataGridOrderProduct" SelectedCellsChanged="dataGridOrderProduct_SelectedCellsChanged"
+            >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Товар">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ProductArticleNumber}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Количество">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderProductCount}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Действие">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Удалить"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox Grid.Column="2" Grid.Row="3"
+                 x:Name="textBoxDescriptionOrder"
+            />
+        <ListBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2"
+            x:Name="listDescriptionProduct"
+                     ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                     ScrollViewer.VerticalScrollBarVisibility="Visible"
+                     ScrollViewer.CanContentScroll="True" 
+                     Visibility="Hidden"
+                     >
+            <StackPanel>
+                <Image Width="40" Height="40">
+                    <Image.Source>
+                        <Binding Path="ProductPhoto">
+                            <Binding.TargetNullValue>
+                                <ImageSource>/Resources/logo.png</ImageSource>
+                            </Binding.TargetNullValue>
+                        </Binding>
+                    </Image.Source>
+                </Image>
+                <TextBlock TextWrapping="WrapWithOverflow">
+                        <Run Text="Наименование товара: "/>
+                        <Run Text="{Binding ProductName}"/>
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap">
+                        <Run Text="Описание товара: "/>
+                        <Run Text="{Binding ProductDescription}"/>
+                </TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow">
+                        <Run Text="Цена: "/>
+                        <Run Text="{Binding ProductCost}"/>
+                </TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow">
+                        <Run Text="Скидка: "/>
+                        <Run Text="{Binding ProductDiscountAmount}"/>
+                </TextBlock>
+                <TextBlock TextWrapping="WrapWithOverflow">
+                        <Run Text="Цена со скидкой: "/>
+                        <Run Text="{Binding ProductWithDiscount}"/>
+                </TextBlock>
+            </StackPanel>
+        </ListBox>
+        <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+            Content="Пункт выдачи товара"
+            />
+        <ComboBox Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="3"
+                  x:Name="comboBoxPoint"
+                  SelectedIndex="0"
+                  DisplayMemberPath="PointAddress"
+            />
+        <Button Grid.Column="1" Grid.Row="5"
+                x:Name="buttonPlaceAnOrder"
+                Content="Оформить заказ" Click="buttonPlaceAnOrder_Click"
+            />
+        <Button Grid.Column="3" Grid.Row="5"
+                x:Name="buttonGetCheck"
+                Content="Получить чек"
+            />
     </Grid>
 </Window>

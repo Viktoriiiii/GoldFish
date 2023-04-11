@@ -81,7 +81,8 @@ namespace GoldFish.View
             var orderProduct = new OrderProduct
             {
                 OrderProductCount = 1,
-                ProductArticleNumber = product.ProductArticleNumber
+                ProductArticleNumber = product.ProductArticleNumber,
+                Product = product,
             };
 
             if (Helper.ListOrderProduct == null || Helper.ListOrderProduct.Count == 0)
