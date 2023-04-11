@@ -56,6 +56,7 @@
                FontWeight="Bold"
                />
         <Image Grid.Column="0" Grid.Row="0"
+               x:Name="imageLogo"
                Source="/Resources/logo.png"
                />
         <Label Grid.Column="1"
@@ -112,12 +113,13 @@
         <Button Grid.Column="1" Grid.Row="8"
                 Margin="5,5,5,5"
                 x:Name="buttonDeleteProduct"
-                Content="Удалить товар" Grid.ColumnSpan="2"
+                Content="Удалить товар" Grid.ColumnSpan="2" Click="buttonDeleteProduct_Click"
             />
         <Button Grid.Column="5" Grid.Row="8"
                 Margin="5,5,5,5"
                 x:Name="buttonSaveChanges"
-                Content="Сохранить изменения"
+                Content="Сохранить изменения" 
+                Click="buttonSaveChanges_Click"
             />
         <TextBox Grid.Column="3"
                 x:Name="textBoxArticle" Margin="0,40,0,40" Grid.RowSpan="3"               
@@ -152,12 +154,12 @@
         <Button Grid.Column="3" Grid.Row="6"
                 Content="Изменить"
                 Margin="10,10,10,10"
-                x:Name="buttonChangeImage"
+                x:Name="buttonChangeImage" Click="buttonChangeImage_Click"
             />
         <Button Grid.Column="3" Grid.Row="7"
                 Content="Удалить"
                 Margin="10,35,10,35"
-                x:Name="butonDeleteImage"
+                x:Name="butonDeleteImage" Click="butonDeleteImage_Click"
             />
     </Grid>
 </Window>
