@@ -30,9 +30,9 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60*"/>
-            <ColumnDefinition Width="156*" />
-            <ColumnDefinition Width="332*"/>
-            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="203*" />
+            <ColumnDefinition Width="255*"/>
+            <ColumnDefinition Width="176*"/>
             <ColumnDefinition Width="106*"/>
         </Grid.ColumnDefinitions>
         <Button Grid.Column="4" 
@@ -57,19 +57,19 @@
                Content="Гость"
                x:Name="labelNameClient"
             />
-        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2"
-               Content="Состав заказа"
+        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+               Content="Состав заказа" Margin="0,42,0,0" Grid.RowSpan="2"
             />
-        <Label Grid.Column="2" Grid.Row="2"
-               Content="Описание заказа"
+        <Label Grid.Column="2" Grid.Row="1"
+               Content="Описание заказа" Margin="0,42,0,0" Grid.RowSpan="2"
             />
-        <Label Grid.Column="3" Grid.Row="2"
-               Content="Описание товара"
+        <Label Grid.Column="3" Grid.Row="1"
+               Content="Описание товара" Margin="0,42,0,0" Grid.RowSpan="2"
             />
-        <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" 
+        <DataGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" 
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
-                  x:Name="dataGridOrderProduct" SelectedCellsChanged="dataGridOrderProduct_SelectedCellsChanged"
+                  x:Name="dataGridOrderProduct" SelectedCellsChanged="dataGridOrderProduct_SelectedCellsChanged" Margin="0,43,0,42" Grid.RowSpan="3"
             >
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Товар">
@@ -86,24 +86,44 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="+">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="buttonAddProduct" 
+                                    Content="+" 
+                                    Click="buttonAddProduct_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="-">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="buttonReduceProduct" 
+                                    Content="-" 
+                                    Click="buttonReduceProduct_Click"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Действие">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Удалить"/>
+                            <Button x:Name="buttonDeleteProduct" 
+                                    Content="Удалить" 
+                                    Click="buttonDeleteProduct_Click"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox Grid.Column="2" Grid.Row="3"
-                 x:Name="textBoxDescriptionOrder"
+        <TextBox Grid.Column="2" Grid.Row="2"
+                 x:Name="textBoxDescriptionOrder" Margin="0,43,0,42" Grid.RowSpan="3"
             />
-        <ListBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="2"
+        <ListBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2"
             x:Name="listDescriptionProduct"
                      ScrollViewer.HorizontalScrollBarVisibility="Visible"
                      ScrollViewer.VerticalScrollBarVisibility="Visible"
                      ScrollViewer.CanContentScroll="True" 
-                     Visibility="Hidden"
+                     Visibility="Hidden" Margin="0,43,0,42" Grid.RowSpan="3"
                      >
             <StackPanel>
                 <Image Width="40" Height="40">
@@ -145,13 +165,14 @@
                   SelectedIndex="0"
                   DisplayMemberPath="PointAddress"
             />
-        <Button Grid.Column="1" Grid.Row="5"
+        <Button Grid.Column="1" Grid.Row="4"
                 x:Name="buttonPlaceAnOrder"
-                Content="Оформить заказ" Click="buttonPlaceAnOrder_Click"
+                Content="Оформить заказ" Click="buttonPlaceAnOrder_Click" Margin="0,42,0,0" Grid.RowSpan="2"
             />
-        <Button Grid.Column="3" Grid.Row="5"
+        <Button Grid.Column="3" Grid.Row="4"
                 x:Name="buttonGetCheck"
-                Content="Получить чек"
+                Content="Сформировать талон"
+                IsEnabled="False" Click="buttonGetCheck_Click" Margin="0,42,0,0" Grid.RowSpan="2"
             />
     </Grid>
 </Window>

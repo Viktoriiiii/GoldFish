@@ -9,5 +9,6 @@ namespace GoldFish.Classes
         public static User User { get; set; }
         public static Product Product { get; set; }
         public static List<OrderProduct> ListOrderProduct { get; set; }
+        public static Order Order { get; set; }
     }
 }
