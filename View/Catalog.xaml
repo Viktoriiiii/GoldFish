@@ -181,11 +181,6 @@
                 x:Name="buttonAddProduct"
                 Margin="5,5,5,5" Click="buttonAddProduct_Click"
             />
-        <Button Grid.Row="6" Grid.Column="2"
-                Content="История входов"
-                x:Name="buttonHystory"
-                Margin="5,5,5,5" Click="buttonHystory_Click"
-            />
         <Button Grid.Row="6" Grid.Column="3"
                 Content="Мой заказ"
                 x:Name="buttonOrder"

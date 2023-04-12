@@ -32,15 +32,7 @@ namespace GoldFish.View
             this.Hide();
             products.ShowDialog();
             this.Close();
-        }
-
-        private void buttonHystory_Click(object sender, RoutedEventArgs e)
-        {
-            Hystory hystory = new Hystory();
-            this.Hide();
-            hystory.ShowDialog();
-            this.Close();
-        }
+        }        
 
         private void buttonOrder_Click(object sender, RoutedEventArgs e)
         {
@@ -61,9 +53,33 @@ namespace GoldFish.View
         private void windowCatalog_Loaded(object sender, RoutedEventArgs e)
         {
             if (Helper.User != null)
+            {
                 labelGuest.Content = $"{Helper.User.UserFullName}";
+                switch (Helper.User.Role.RoleName)
+                {
+                    case "Клиент":
+                        buttonOrder.IsEnabled = false;
+                        buttonAddProduct.Visibility = Visibility.Hidden;
+                        buttonUpdateOrders.Visibility = Visibility.Hidden;
+                        break;
+                    case "Администратор":
+                        buttonOrder.Visibility = Visibility.Hidden;
+                        break;
+                    case "Менеджер":
+                        buttonOrder.Visibility = Visibility.Hidden;
+                        break;
+                }
+            }
             else
+            {
                 labelGuest.Content = "Гость";
+                buttonOrder.IsEnabled = false;
+                buttonAddProduct.Visibility = Visibility.Hidden;
+                buttonUpdateOrders.Visibility = Visibility.Hidden;
+            }            
+
+            if (Helper.ListOrderProduct == null)
+                buttonOrder.IsEnabled = false;
 
             List<string> categories = new List<string>();
             categories.Add("Все категории");
@@ -91,11 +107,15 @@ namespace GoldFish.View
                 {
                     orderProduct,
                 };
+                buttonOrder.IsEnabled = true;
             }
             else
             {
                 if (!Helper.ListOrderProduct.Exists(x => x.ProductArticleNumber == product.ProductArticleNumber))
+                {
                     Helper.ListOrderProduct.Add(orderProduct);
+                    buttonOrder.IsEnabled = true;
+                }
                 else
                 {
                     int ind = Helper.ListOrderProduct.FindIndex(x => x.ProductArticleNumber == product.ProductArticleNumber);

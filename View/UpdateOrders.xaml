@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GoldFish.View"
         mc:Ignorable="d"
+        x:Name="OpdateOrders"
+        Loaded="OpdateOrders_Loaded"
         Title="Работа с заказами" Height="450" Width="800"
         MinHeight="450" MinWidth="800" Icon="/Resources/icon.ico">
-
     <Window.Resources>
         <Style TargetType="{x:Type Control}" x:Key="baseStyle">
             <Setter Property="FontFamily" Value="Ebrima" />
@@ -19,44 +20,133 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="110*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="80*"/>
-            <RowDefinition Height="40*"/>
+            <RowDefinition Height="49*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="39*"/>
+            <RowDefinition Height="174*"/>
+            <RowDefinition Height="94*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="170*" />
-            <ColumnDefinition Width="147*"/>
+            <ColumnDefinition Width="83*" />
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="76*"/>
+            <ColumnDefinition Width="71*"/>
             <ColumnDefinition Width="53*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,0,0,61" Grid.RowSpan="2"/>
-        <Grid Grid.Row="5" Grid.ColumnSpan="4"
-              Background="#FF9DE697" Margin="0,82,0,0" Grid.RowSpan="2"/>
-        <Button Grid.Column="3" 
+        <Button Grid.Column="5" 
                 x:Name="buttonOnCatalog"
                 Content="В каталог" 
-                HorizontalAlignment="Stretch" 
-                VerticalAlignment="Stretch" 
-                Margin="5 5 5 5"
-                Background="#FF2BE36F"   
+                Margin="5,5,5,5"
+                Background="#FFF"   
                 FontSize="15" Click="buttonOnCatalog_Click"
-
                 />
-        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2"
+        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4"
                Content="Работа с заказами"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center" 
                FontSize="16"
-               FontWeight="Bold" Margin="0,0,0,61" Grid.RowSpan="2"
+               FontWeight="Bold"
                />
         <Image Grid.Column="0" Grid.Row="0"
-               Source="/Resources/logo.png" Margin="0,0,0,61" Grid.RowSpan="2"
+               Source="/Resources/logo.png"
                />
-
+        <DataGrid Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="4"
+                  Grid.RowSpan="4"
+                  Margin="10,10,10,10"
+                  x:Name="dataGridOrders"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False" 
+                  SelectionChanged="dataGridOrders_SelectionChanged"
+                  >
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Изменить статус"
+                              x:Name="changeStatus"
+                              Click="changeStatus_Click"
+                        />
+                    <MenuItem Header="Изменить дату на дату календаря"
+                              x:Name="changeDate"
+                              Click="changeDate_Click"
+                        />
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Номер заказа">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderID}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дата заказа">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderDate, StringFormat=d}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дата доставки">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderDeliveryDate, StringFormat=d}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Статус">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Status.StatusName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="ФИО клиента">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Client.User.UserFullName}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2"
+                  Margin="10"
+                  x:Name="dataGridOrderProduct" Grid.RowSpan="3"   
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Артикул">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ProductArticleNumber}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Количество">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding OrderProductCount}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>        
+        <Label Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+            Content="Данные по заказам"
+               />
+        <Label Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="2"
+            Content="Состав заказа"
+               />
+        <TextBox Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2"
+                 x:Name="textBoxDescription"
+                 ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                 Margin="10"/>
+        <DatePicker Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2"
+                    Margin="5"
+                    x:Name="datePickerForOrder"
+                    >            
+        </DatePicker>
     </Grid>
 </Window>
